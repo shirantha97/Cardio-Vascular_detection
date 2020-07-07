@@ -39,8 +39,8 @@ featureScore.columns = ["feature", "score"]
 print(featureScore)
 
 X = cardioVascularDF[
-    ["sysBP", "glucose", "age", "totChol", "cigsPerDay", "diaBP", "prevalentHyp", "diabetes", "BPMeds", "male", "BMI",
-     "prevalentStroke"]]
+    ["male", "age", "cigsPerDay", "prevalentHyp", "prevalentStroke", "BPMeds", "glucose", "totChol", "sysBP", "diaBP",
+     "diabetes", "BMI"]]
 Y = cardioVascularDF["TenYearCHD"]
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=42)
