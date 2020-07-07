@@ -5,9 +5,9 @@
         <form method="POST" action="/predict">
             <div class="form-group">
                 <label for="MaleFemale">Select Sex</label>
-                <select class="form-control" id="MaleFemale">
-                    <option name="sex" value="1">M</option>
-                    <option name="sex" value="0">F</option>
+                <select class="form-control" id="MaleFemale" name="sex">
+                    <option value="1">M</option>
+                    <option value="0">F</option>
                 </select>
             </div>
             <div class="form-group">
@@ -30,8 +30,8 @@
             </div>
             <div class="form-group">
                 <label for="smoker">Are you currently on medication for Blood Pressure?</label>
-                <label class="checkbox-inline"><input type="radio" name="hypertension" value="1">Yes</label>
-                <label class="checkbox-inline"><input type="radio" name="hypertension" value="0">No</label>
+                <label class="checkbox-inline"><input type="radio" name="bpmeds" value="1">Yes</label>
+                <label class="checkbox-inline"><input type="radio" name="bpmeds" value="0">No</label>
             </div>
             <div class="form-group">
                 <label for="glucose">Glucose Level</label>
@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label for="BMI">BMI</label>
-                <input type="number" class="form-control" id="BMI" name="BMI">
+                <input type="number" class="form-control" id="BMI" name="BMI" step="0.01">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Submit</button>

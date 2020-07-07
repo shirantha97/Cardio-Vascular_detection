@@ -19,12 +19,11 @@ def forms():
 
 @app.route("/predict", methods=['POST', 'GET'])
 def do_post_search():
-    # BMI = request.form.get('BMI')
-    # age = request.form.get('AgeInput')
-    # # sysBp = request.form.get('')
     int_features = [float(x) for x in request.form.values()]
     final = [np.array(int_features)]
     print(final)
+    predict = model.predict(final)
+    print(predict)
     return render_template('home.html')
 
 
