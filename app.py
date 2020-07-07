@@ -23,7 +23,8 @@ def do_post_search():
     final = [np.array(int_features)]
     print(final)
     predict = model.predict(final)
-    print(predict)
+    prediction_prob = model.predict_proba(final)
+    print(prediction_prob)
     return render_template('home.html')
 
 
