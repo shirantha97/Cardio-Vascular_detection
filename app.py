@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import cloudpickle
 import json
 import numpy as np
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__,static_url_path='', static_folder='static', template_folder='templates')
 model = cloudpickle.load(open('finalModel.sav', 'rb'))
 
 
@@ -24,7 +24,7 @@ def do_post_search():
     print(final)
     predict = model.predict(final)
     prediction_prob = model.predict_proba(final)
-    print(prediction_prob)
+    print(prediction_prob[1])
     return render_template('home.html')
 
 
