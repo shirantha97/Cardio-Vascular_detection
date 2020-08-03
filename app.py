@@ -20,7 +20,20 @@ def forms():
 
 @app.route("/predict", methods=['POST', 'GET'])
 def do_post_search():
-    int_features = [float(x) for x in request.form.values()]
+    bmi = request.args.get('BMI')
+    diabetes = request.args.get('diabetes')
+    diaBp = request.args.get('diaBp')
+    sysBp = request.args.get('sysBp')
+    totChol = request.args.get('totChol')
+    glucose = request.args.get('glucose')
+    bpmeds = request.args.get('bpmeds')
+    stroke = request.args.get('stroke')
+    hypertension = request.args.get('hypertension')
+    cigs = request.args.get('cigs')
+    age = request.args.get('age')
+    sex = request.args.get('sex')
+
+    int_features = [bmi, diabetes, diaBp, sysBp, totChol, glucose, bpmeds, stroke, hypertension, cigs, age, sex]
     final = [np.array(int_features)]
     print(final)
     predict = model.predict(final)
