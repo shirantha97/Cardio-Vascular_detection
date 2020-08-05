@@ -28,6 +28,11 @@ def forms():
 
 @app.route("/predict", methods=['POST', 'GET'])
 def do_post_search():
+
+    # if request.method == 'POST':
+    #     bmi = request.form.get("bmi")
+    #     print(bmi)
+
     data = request.data
     datadict = json.loads(data)
     bmi = float(datadict["bmi"])
@@ -55,6 +60,7 @@ def do_post_search():
     }
     json_output = json.dumps(output)
     return json_output
+
     # output = {
     #     "positive prediction": "gg",
     #     "negative prediction": "d"
