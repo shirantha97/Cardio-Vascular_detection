@@ -28,14 +28,12 @@ def forms():
 
 @app.route("/predict", methods=['POST', 'GET'])
 def do_post_search():
-
-    # if request.method == 'POST':
-    #     bmi = request.form.get("bmi")
-    #     print(bmi)
-
     data = request.data
     datadict = json.loads(data)
-    bmi = float(datadict["bmi"])
+
+    weight = float(datadict["weight"])
+    height = float(datadict["height"])
+    bmi = weight / (height * height)
     diabetes = float(datadict["diabetes"])
     diaBp = float(datadict["diaBp"])
     sysBp = float(datadict["sysBp"])
@@ -50,14 +48,15 @@ def do_post_search():
 
     int_features = [bmi, diabetes, diaBp, sysBp, totChol, glucose, bpmeds, stroke, hypertension, cigs, age, sex]
     final = [np.array(int_features)]
-    print(final)
     predict = model.predict(final)
     prediction_prob = model.predict_proba(final)
-    print(predict)
     output = {
-        "positive prediction": (prediction_prob[0][1]*100).item(),
-        "negative prediction": (prediction_prob[0][0]*100).item()
+        "positive prediction": (prediction_prob[0][1] * 100).item(),
+        "negative prediction": (prediction_prob[0][0] * 100).item()
     }
+
+    bmr = bmr_calculator(sex, weight, height, age)
+
     json_output = json.dumps(output)
     return json_output
 
@@ -67,6 +66,15 @@ def do_post_search():
     # }
     # json_output = json.dumps(output)
     # return json_output
+
+
+def bmr_calculator(sex, weight, height, age):
+    if sex == 1:
+        BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+        return BMR
+    elif sex == 0:
+        BMR = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
+        return BMR
 
 
 if __name__ == "_main_":
