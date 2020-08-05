@@ -50,12 +50,11 @@ def do_post_search():
     final = [np.array(int_features)]
     predict = model.predict(final)
     prediction_prob = model.predict_proba(final)
+
     output = {
         "positive prediction": (prediction_prob[0][1] * 100).item(),
-        "negative prediction": (prediction_prob[0][0] * 100).item()
+        "negative prediction": (prediction_prob[0][0] * 100).item(),
     }
-
-    bmr = bmr_calculator(sex, weight, height, age)
 
     json_output = json.dumps(output)
     return json_output
@@ -68,13 +67,22 @@ def do_post_search():
     # return json_output
 
 
-def bmr_calculator(sex, weight, height, age):
-    if sex == 1:
-        BMR = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
-        return BMR
-    elif sex == 0:
-        BMR = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
-        return BMR
+# def bmr_calculator(sex, weight, height, age):
+#     if sex == 1:
+#         bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+#         return bmr
+#     elif sex == 0:
+#         bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
+#         return bmr
+#
+#
+# def rmr_calculator(s, weight, height, age):
+#     if s == 1:
+#         rmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+#         return rmr
+#     elif s == 0:
+#         rmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
+#         return rmr
 
 
 if __name__ == "_main_":
