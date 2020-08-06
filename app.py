@@ -33,7 +33,7 @@ def do_post_search():
 
     weight = float(datadict["weight"])
     height = float(datadict["height"])
-    bmi = weight / (height * height)
+    bmi = weight / ((height/100) * (height/100))
     diabetes = float(datadict["diabetes"])
     diaBp = float(datadict["diaBp"])
     sysBp = float(datadict["sysBp"])
