@@ -32,8 +32,11 @@ def do_post_search():
     datadict = json.loads(data)
 
     weight = float(datadict["weight"])
-    height = float(datadict["height"])
-    bmi = weight / ((height/100) * (height/100))
+    height = float(datadict["height"])/100
+    print(height)
+    print(weight)
+    bmi = weight / (height * height)
+    print(bmi)
     diabetes = float(datadict["diabetes"])
     diaBp = float(datadict["diaBp"])
     sysBp = float(datadict["sysBp"])
@@ -49,8 +52,9 @@ def do_post_search():
     int_features = [bmi, diabetes, diaBp, sysBp, totChol, glucose, bpmeds, stroke, hypertension, cigs, age, sex]
     final = [np.array(int_features)]
     predict = model.predict(final)
+    print(predict)
     prediction_prob = model.predict_proba(final)
-
+    print(prediction_prob)
     output = {
         "positive prediction": (prediction_prob[0][1] * 100).item(),
         "negative prediction": (prediction_prob[0][0] * 100).item(),
