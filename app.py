@@ -50,6 +50,9 @@ def do_post_search():
     cholesterol_level = cholesterol_check(age, totChol, sex)
     cardio = 0 if cholesterol_level == 3 else 1
 
+    bmr = bmr_calculator(sex, weight, height, age)
+
+
     # bpmeds = float(datadict["bpmeds"])
     # stroke = float(datadict["stroke"])
     # hypertension = float(datadict["hypertension"])
@@ -60,9 +63,6 @@ def do_post_search():
     final = [np.array(int_features)]
     predict = model.predict(final)
     prediction_prob = model.predict_proba(final)
-
-    print(predict[0].item())
-    print(prediction_prob)
 
     output = {
         "positive prediction": (prediction_prob[0][0] * 100),
@@ -120,13 +120,13 @@ def cholesterol_check(age, totChol, sex):
             return chol_well_above
 
 
-# def bmr_calculator(sex, weight, height, age):
-#     if sex == 1:
-#         bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
-#         return bmr
-#     elif sex == 0:
-#         bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
-#         return bmr
+def bmr_calculator(sex, weight, height, age):
+    if sex == 1:
+        bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age)
+        return bmr
+    elif sex == 0:
+        bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
+        return bmr
 
 
 if __name__ == "_main_":
