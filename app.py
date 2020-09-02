@@ -65,8 +65,8 @@ def do_post_search():
     prediction_prob = model.predict_proba(final)
 
     output = {
-        "positive prediction": (prediction_prob[0][0] * 100),
-        "negative prediction": (prediction_prob[0][1] * 100),
+        "positive prediction": (prediction_prob[0][1] * 100),
+        "negative prediction": (prediction_prob[0][0] * 100),
     }
 
     json_output = json.dumps(output)
