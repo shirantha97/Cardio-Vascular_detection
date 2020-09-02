@@ -84,14 +84,14 @@ def glucose_level_check(glucose, diabetes):
     glucose_normal = 1
     glucose_above_normal = 2
     glucose_well_above = 3
-    if diabetes == '0':
+    if diabetes == 0:
         if 70.0 <= glucose <= 85.0:
             return glucose_normal
         elif 85.0 < glucose <= 99.0:
             return glucose_above_normal
         elif 99.0 < glucose:
             return glucose_well_above
-    elif diabetes == '1':
+    elif diabetes == 1:
         if 80.0 <= glucose <= 120.0:
             return glucose_normal
         elif 120.0 < glucose <= 130.0:
