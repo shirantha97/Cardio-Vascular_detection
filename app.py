@@ -45,7 +45,7 @@ def do_post_search():
     totChol = float(datadict["totChol"])
     glucose = float(datadict["glu"])
     alco = 1.0 if cigs == 1.0 else 0
-    diabetes = datadict["diabetes"]
+    diabetes = float(datadict["diabetes"])
     glucose_level = glucose_level_check(glucose, diabetes)
     cholesterol_level = cholesterol_check(age, totChol, sex)
     cardio = 0 if cholesterol_level == 3 else 1
