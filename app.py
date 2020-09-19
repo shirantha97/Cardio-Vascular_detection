@@ -31,6 +31,7 @@ def forms():
 
 @app.route("/predict", methods=['POST', 'GET'])
 def do_post_search():
+    # print(request.query_string)
     data = request.data
     datadict = json.loads(data)
 
