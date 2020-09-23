@@ -50,9 +50,10 @@ def do_post_search():
     glucose_level = glucose_level_check(glucose, diabetes)
     cholesterol_level = cholesterol_check(age, totChol, sex)
     cardio = 0 if cholesterol_level == 3 else 1
+    exerciseRate = float(datadict["exerciseRate"])
 
     bmr = bmr_calculator(sex, weight, height, age)
-
+    tdee = TDEEcalculator(bmr, exerciseRate)
 
     # bpmeds = float(datadict["bpmeds"])
     # stroke = float(datadict["stroke"])
@@ -66,8 +67,10 @@ def do_post_search():
     prediction_prob = model.predict_proba(final)
 
     output = {
-        "positive prediction": (prediction_prob[0][1] * 100),
-        "negative prediction": (prediction_prob[0][0] * 100),
+        "positive_prediction": (prediction_prob[0][1] * 100),
+        "negative_prediction": (prediction_prob[0][0] * 100),
+        "bmr": bmr,
+        "tdee": tdee
     }
 
     json_output = json.dumps(output)
@@ -128,6 +131,17 @@ def bmr_calculator(sex, weight, height, age):
     elif sex == 0:
         bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
         return bmr
+
+
+def TDEEcalculator(bmr, exerciseRate):
+    if exerciseRate == 0:
+        return bmr * 1.2
+    elif 1 <= exerciseRate <= 3:
+        return bmr * 1.2
+    elif 3 < exerciseRate <= 5:
+        return bmr * 1.375
+    elif 6 <= exerciseRate <= 7:
+        return bmr * 725
 
 
 if __name__ == "_main_":
