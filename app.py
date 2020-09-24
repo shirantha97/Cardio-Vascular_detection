@@ -141,7 +141,7 @@ def TDEEcalculator(bmr, exerciseRate):
     elif 3 < exerciseRate <= 5:
         return bmr * 1.375
     elif 6 <= exerciseRate <= 7:
-        return bmr * 725
+        return bmr * 1.725
 
 
 if __name__ == "_main_":
