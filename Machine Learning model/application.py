@@ -71,12 +71,5 @@ pickle.dump(log_reg_cv, open(fileName, 'wb'))
 print("Tuned hyperparameter n_estimators: {}".format(log_reg_cv.best_params_))
 print("Best score: {}".format(log_reg_cv.best_score_))
 
-# y_pred = log_reg_cv.predict(x_test)
-# print('Test data accuracy Score : ' + str(metrics.accuracy_score(y_test, y_pred) * 100))
 
-features = [9176, 1, 178, 68.0, 110, 75, 3, 1, 0, 1, 1, 24.95784]
-final = [np.array(features)]
-model = pickle.load(open(fileName, 'rb'))
-print(model.predict(final))
-print(model.predict_proba(final))
 
